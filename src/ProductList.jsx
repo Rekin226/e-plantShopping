@@ -11,10 +11,10 @@ function ProductList() {
     const dispatch = useDispatch();
 
     // Get the cart items from the Redux state
-    //const cart = useSelector(state => state.cart.items);
+    const cart = useSelector(state => state.cart.items);
 
     // Calculate the total number of items in the cart
-    //const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+    const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
     const plantsArray = [
         {
