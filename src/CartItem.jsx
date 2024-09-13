@@ -12,7 +12,8 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalAmount = () => {
     let totalamount = 0
     cart.forEach((item) => {
-        totalamount += item.quantity * item.cost
+        const itemCost = parseFloat(item.cost.replace('$', ''));  // Convert cost to a number
+        totalamount += item.quantity * itemCost
     });
     return totalamount;
   };
@@ -28,7 +29,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleCheckoutShopping = (e) => {
-    alert('Functionality to be added for future reference');
+    alert('Coming Soon!');
   };
 
   const handleIncrement = (item) => {
@@ -55,12 +56,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    return item.quantity * item.cost; 
+    const itemCost = parseFloat(item.cost.replace('$', ''));  // Convert cost to a number
+    return item.quantity * itemCost; 
   };
 
 
   return (
     <div className="cart-container">
+
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (
