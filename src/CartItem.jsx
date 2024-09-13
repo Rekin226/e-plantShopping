@@ -7,30 +7,57 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
+
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    let totalamount = 0
+    cart.forEach((item) => {
+        totalamount += item.quantity * item.cost
+    });
+    return totalamount;
   };
+
+
+  // Calculate the total number of items in the cart
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleContinueShopping = (e) => {
-   
+    if (onContinueShopping) {
+        onContinueShopping();  // Call the function passed from the parent to continue shopping
+    }
   };
 
-
+  const handleCheckoutShopping = (e) => {
+    alert('Functionality to be added for future reference');
+  };
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({
+        name: item.name,
+        quantity: item.quantity + 1  // Increment the quantity by 1
+      }));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+        dispatch(updateQuantity({
+          name: item.name,
+          quantity: item.quantity - 1  // Decrement the quantity by 1
+        }));
+      } else {
+        dispatch(removeItem(item.name));  // If quantity reaches 0, remove the item
+      }
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));  // Dispatch the removeItem action with the plant's name
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return item.quantity * item.cost; 
   };
+
 
   return (
     <div className="cart-container">
