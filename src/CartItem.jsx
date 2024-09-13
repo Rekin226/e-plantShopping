@@ -64,6 +64,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   return (
     <div className="cart-container">
+      {/* Display the total quantity in the cart icon */}
+      <div className="navbar">
+        <div className="cart-icon">
+          <i className="fa fa-shopping-cart"></i>
+          <span className="cart-quantity">{totalQuantity}</span>  {/* Display totalQuantity */}
+        </div>
+      </div>
+
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (
