@@ -23,8 +23,9 @@ const CartItem = ({ onContinueShopping }) => {
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
   const handleContinueShopping = (e) => {
+    e.preventDefault();
     if (onContinueShopping) {
-        onContinueShopping();  // Call the function passed from the parent to continue shopping
+      onContinueShopping(e);  // Call the function passed from ProductList.jsx
     }
   };
 
